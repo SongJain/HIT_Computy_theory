@@ -2,7 +2,7 @@
 # @Time : 2021-09-14 22:12 
 # @Author : SongJian
 # @File : Graph_Node.py
-ID = 0
+ID = -2
 class Graph_Node:
     node_id = 0
     def __init__(self):

@@ -28,10 +28,22 @@ class Regex:
         self.operatorStack = Stack()
 
     """
+    删除空格的函数
+    """
+    def spaces_del(self, str):
+        ans = ""
+        for i in range(len(str)):
+            if str[i] != " ":
+                ans += str[i]
+        return ans
+
+    """
     先对正则表达式进行预处理
     """
     def prepare_RL(self, regular_Language):
         prepared_rl = ""
+        ## 去除所有空格
+        regular_Language = self.spaces_del(regular_Language)
         regular_Language.replace(" ", "")
         for index in range(len(regular_Language)):
             if index == 0:
@@ -81,6 +93,7 @@ class Regex:
                     # 先比较当前操作符与操作符栈顶的操作符的优先级
                     value = self.priorityOperator(self.operatorStack.peek(), self.regex[index])
                     if value == 1:
+                        # 该情况即可直接计算
                         character = self.operatorStack.pop()
                         if character == '*':
                             obj = self.operandStack.pop()
@@ -100,6 +113,7 @@ class Regex:
                             graph3.Union(obj3, obj4)
                             self.operandStack.push(graph3)
                     elif value == 0:
+                        ## 弹出括号，匹配括号
                         self.operatorStack.pop()
                         index += 1
                     elif value == -1:

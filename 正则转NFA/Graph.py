@@ -87,7 +87,7 @@ class Graph:
             if isinstance(obj2, Graph):
                 self.addUnion_CandG(obj1, obj2)
                 return
-            elif isinstance(obj1, obj2):
+            elif isinstance(obj2, str):
                 self.addUnion_CandC(obj1, obj2)
                 return
         elif isinstance(obj1, Graph):

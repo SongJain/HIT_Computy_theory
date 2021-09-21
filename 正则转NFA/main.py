@@ -7,10 +7,13 @@ from RL_to_NFA import Regex
 from Graph import Graph
 
 if __name__ == "__main__":
-    regexString1 = "(ab|c)*abb"
-    strr = Regex(regexString1)
+    # 打开文件对象
+    file = open('re_express.txt', 'r')
+    regexString = file.read()
+    strr = Regex(regexString)
+    print("文件读取的正则表达式：" + regexString)
+    print("正则表达式转换后：" + strr.regex)
     g = strr.transforNFA()
-    print("正则表达式转换后："+strr.regex)
     print(g.toString())
     strr.reset()
 
